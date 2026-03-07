@@ -1,0 +1,39 @@
+# Binary
+kubetray
+
+# Build output
+dist/
+bin/
+
+# Test
+*.test
+coverage.out
+coverage.html
+
+# Dependencies
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug
+*.log
+
+# Local
+.env
+.env.local
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Claude Code
+CLAUDE.md
+.claude/
