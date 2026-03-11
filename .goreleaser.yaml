@@ -22,7 +22,8 @@ builds:
       - arm64
 
 archives:
-  - format: tar.gz
+  - formats:
+      - tar.gz
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 
 checksum:
@@ -40,6 +41,7 @@ brews:
   - repository:
       owner: ugurozkn
       name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     homepage: https://github.com/ugurozkn/kubetray
     description: "Local K8s, served on a tray"
     license: MIT
