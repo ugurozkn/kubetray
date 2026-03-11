@@ -48,15 +48,16 @@
     <span class="tagline">Local K8s, served on a tray.</span>
 
     <div class="section">
-      <h2>Quick Start</h2>
-      <pre><code><span class="comment"># Install</span>
-git clone https://github.com/ugurozkn/kubetray.git
-cd kubetray &amp;&amp; make install
+      <h2>Install</h2>
+      <pre><code><span class="comment"># Homebrew</span>
+brew install ugurozkn/tap/kubetray
 
-<span class="comment"># Run</span>
-kubetray start
-export KUBECONFIG=~/.kubetray/kubeconfig
-kubectl get nodes</code></pre>
+<span class="comment"># npm</span>
+npx kubetray start
+
+<span class="comment"># From source</span>
+git clone https://github.com/ugurozkn/kubetray.git
+cd kubetray &amp;&amp; make install</code></pre>
     </div>
 
     <div class="section">
@@ -64,12 +65,27 @@ kubectl get nodes</code></pre>
       <pre><code>kubetray start                       <span class="comment"># Start cluster</span>
 kubetray start --cpus 4 --memory 8G  <span class="comment"># Custom resources</span>
 kubetray stop                        <span class="comment"># Stop cluster</span>
-kubetray clean                       <span class="comment"># Delete cluster</span></code></pre>
+kubetray clean                       <span class="comment"># Delete cluster</span>
+kubetray version                     <span class="comment"># Version info</span></code></pre>
+    </div>
+
+    <div class="section">
+      <h2>MCP (AI Integration)</h2>
+      <pre><code><span class="comment">// ~/.claude/claude_desktop_config.json</span>
+{
+  "mcpServers": {
+    "kubetray": {
+      "command": "kubetray",
+      "args": ["mcp"]
+    }
+  }
+}</code></pre>
     </div>
 
     <div class="links">
       <a href="https://github.com/ugurozkn/kubetray">GitHub</a>
-      <a href="https://github.com/ugurozkn/kubetray#installation">Install</a>
+      <a href="https://github.com/ugurozkn/kubetray#installation">Docs</a>
+      <a href="https://github.com/ugurozkn/kubetray/releases">Releases</a>
       <a href="https://github.com/ugurozkn/kubetray/blob/main/LICENSE">MIT License</a>
     </div>
   </div>
