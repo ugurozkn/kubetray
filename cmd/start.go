@@ -70,7 +70,7 @@ func runStart(cmd *cobra.Command, args []string) error {
 		for _, s := range statuses {
 			if !s.Installed && s.Dependency.Required {
 				ui.Error("%s not found", s.Dependency.Name)
-				ui.Step(s.Dependency.InstallHint)
+				ui.Step("%s", s.Dependency.InstallHint)
 			}
 		}
 		return err
