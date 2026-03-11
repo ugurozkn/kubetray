@@ -57,11 +57,37 @@ kubetray start --cpus 4 --memory 8G  # Start with more resources
 kubetray stop                        # Stop cluster (preserves data)
 kubetray clean                       # Delete cluster completely
 kubetray clean --force               # Delete without confirmation
+kubetray version                     # Print version info
 ```
 
 ---
 
 ## Installation
+
+### Homebrew
+
+```bash
+brew install ugurozkn/tap/kubetray
+```
+
+### npm / npx
+
+```bash
+npx kubetray start        # Run without installing
+npm install -g kubetray    # Or install globally
+```
+
+### From source
+
+```bash
+git clone https://github.com/ugurozkn/kubetray.git
+cd kubetray
+make install
+```
+
+### GitHub Releases
+
+Download pre-built binaries from the [releases page](https://github.com/ugurozkn/kubetray/releases).
 
 ### Prerequisites
 
@@ -74,13 +100,35 @@ You need a container runtime and a couple of CLI tools:
 - **helm** — `brew install helm`
 - **kubectl** — `brew install kubectl`
 
-### From source
+---
 
-```bash
-git clone https://github.com/ugurozkn/kubetray.git
-cd kubetray
-make install
+## MCP (AI Integration)
+
+`kubetray` includes a built-in [Model Context Protocol](https://modelcontextprotocol.io/) server, allowing AI assistants like Claude to manage your local cluster.
+
+### Claude Desktop
+
+Add to `~/.claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "kubetray": {
+      "command": "kubetray",
+      "args": ["mcp"]
+    }
+  }
+}
 ```
+
+### Available MCP tools
+
+| Tool | Description |
+|------|-------------|
+| `cluster_start` | Start cluster (optional: cpus, memory) |
+| `cluster_stop` | Stop cluster, preserves data |
+| `cluster_clean` | Delete cluster and all data |
+| `cluster_status` | Check cluster status and node info |
 
 ---
 
@@ -89,7 +137,9 @@ make install
 `kubetray` is being built incrementally. Each feature ships as a separate PR.
 
 - [x] **Cluster lifecycle** — `start`, `stop`, `clean`
-- [ ] **Version command** — version, build info
+- [x] **Version command** — version, build info
+- [x] **CI/CD & releases** — GoReleaser, Homebrew tap, npm, GitHub Actions
+- [x] **MCP server** — AI tool integration via Model Context Protocol
 - [ ] **Status command** — cluster health, node info, pod status
 - [ ] **Component system** — install Prometheus, Grafana, Loki, ArgoCD via Helm
 - [ ] **Log streaming** — `kubetray logs <component>`
@@ -98,7 +148,6 @@ make install
 - [ ] **Project config** — per-project `.kubetray/` directory with custom Helm values
 - [ ] **Docker Compose deploy** — `kubetray deploy -f docker-compose.yml`
 - [ ] **App management** — scale, autoscale, resource limits, restart
-- [ ] **CI/CD & releases** — GoReleaser, Homebrew tap, GitHub Actions
 
 ---
 
