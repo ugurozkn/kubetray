@@ -1,0 +1,54 @@
+version: 2
+
+project_name: kubetray
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - main: .
+    binary: kubetray
+    ldflags:
+      - -s -w
+      - -X github.com/ugurozkn/kubetray/cmd.version={{.Version}}
+      - -X github.com/ugurozkn/kubetray/cmd.commit={{.ShortCommit}}
+      - -X github.com/ugurozkn/kubetray/cmd.date={{.Date}}
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
+checksum:
+  name_template: 'checksums.txt'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+
+brews:
+  - repository:
+      owner: ugurozkn
+      name: homebrew-tap
+    homepage: https://github.com/ugurozkn/kubetray
+    description: "Local K8s, served on a tray"
+    license: MIT
+    install: |
+      bin.install "kubetray"
+    test: |
+      system "#{bin}/kubetray", "--help"
+
+release:
+  github:
+    owner: ugurozkn
+    name: kubetray
