@@ -34,6 +34,12 @@ Thumbs.db
 # Claude Code local settings
 .claude/settings.local.json
 
+# npm
+npm/node_modules/
+npm/kubetray
+npm/kubetray.tar.gz
+npm/package-lock.json
+
 # Claude Code
 CLAUDE.md
 .claude/
